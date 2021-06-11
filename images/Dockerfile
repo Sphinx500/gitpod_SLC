@@ -11,10 +11,10 @@ RUN apt-get install -y python3-pip
 RUN apt-get install -y sqlite3
 
 # Define ENV files
-ENV requirements docker/requirements.txt
+ENV requirements images/requirements.txt
 
 # Copy requirements file
 COPY requirements.txt ${requirements}
 
 # Install python packages
-RUN pip3 install -r docker/requirements.txt
+RUN pip3 install -r images/requirements.txt
