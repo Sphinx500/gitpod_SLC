@@ -4,15 +4,17 @@ LABEL description = "Imagen para web.py SLC"
 LABEL mainteiner = "Fernando HV"
 LABEL version = "0.1"
 
-ENV requirements /home/requirements.txt
+RUN apt-get update
 
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+RUN apt-get install -y sqlite3
+
+# Define ENV files
+ENV requirements docker/requirements.txt
+
+# Copy requirements file
 COPY requirements.txt ${requirements}
 
-RUN apt update
-RUN apt install -y python3
-RUN apt install -y python3-pip
-RUN apt install -y sqlite3
-
-RUN pip3 install -r ${requirements}
-
-RUN apt-get upgrade -y
+# Install python packages
+RUN pip3 install -r docker/requirements.txt
